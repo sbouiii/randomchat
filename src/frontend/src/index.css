@@ -1,0 +1,191 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --font-display: "General Sans", sans-serif;
+    --font-body: "DM Sans", sans-serif;
+    --font-mono: "Geist Mono", monospace;
+    --radius: 0.75rem;
+
+    --background: 0.12 0 0;
+    --foreground: 0.95 0 0;
+    --card: 0.18 0 0;
+    --card-foreground: 0.95 0 0;
+    --popover: 0.22 0 0;
+    --popover-foreground: 0.95 0 0;
+
+    --primary: 0.72 0.22 200;
+    --primary-foreground: 0.12 0 0;
+
+    --secondary: 0.35 0.12 270;
+    --secondary-foreground: 0.95 0 0;
+    --muted: 0.22 0 0;
+    --muted-foreground: 0.6 0 0;
+
+    --accent: 0.72 0.22 200;
+    --accent-foreground: 0.12 0 0;
+
+    --destructive: 0.6 0.2 15;
+    --destructive-foreground: 0.95 0 0;
+
+    --border: 0.25 0.05 0;
+    --input: 0.22 0 0;
+    --ring: 0.72 0.22 200;
+
+    --chart-1: 0.72 0.22 200;
+    --chart-2: 0.65 0.25 270;
+    --chart-3: 0.7 0.18 160;
+    --chart-4: 0.6 0.2 15;
+    --chart-5: 0.55 0.15 280;
+
+    --sidebar: 0.18 0 0;
+    --sidebar-foreground: 0.95 0 0;
+    --sidebar-primary: 0.72 0.22 200;
+    --sidebar-primary-foreground: 0.12 0 0;
+    --sidebar-accent: 0.65 0.25 270;
+    --sidebar-accent-foreground: 0.95 0 0;
+    --sidebar-border: 0.25 0.05 0;
+    --sidebar-ring: 0.72 0.22 200;
+
+    --gradient-primary: linear-gradient(
+      135deg,
+      oklch(0.65 0.25 270),
+      oklch(0.72 0.22 200)
+    );
+    --gradient-subtle: linear-gradient(135deg, oklch(0.22 0 0), oklch(0.18 0 0));
+  }
+
+  .dark {
+    --background: 0.12 0 0;
+    --foreground: 0.95 0 0;
+    --card: 0.18 0 0;
+    --card-foreground: 0.95 0 0;
+    --popover: 0.22 0 0;
+    --popover-foreground: 0.95 0 0;
+
+    --primary: 0.72 0.22 200;
+    --primary-foreground: 0.12 0 0;
+
+    --secondary: 0.35 0.12 270;
+    --secondary-foreground: 0.95 0 0;
+    --muted: 0.22 0 0;
+    --muted-foreground: 0.6 0 0;
+
+    --accent: 0.72 0.22 200;
+    --accent-foreground: 0.12 0 0;
+
+    --destructive: 0.6 0.2 15;
+    --destructive-foreground: 0.95 0 0;
+
+    --border: 0.25 0.05 0;
+    --input: 0.22 0 0;
+    --ring: 0.72 0.22 200;
+
+    --chart-1: 0.72 0.22 200;
+    --chart-2: 0.65 0.25 270;
+    --chart-3: 0.7 0.18 160;
+    --chart-4: 0.6 0.2 15;
+    --chart-5: 0.55 0.15 280;
+
+    --sidebar: 0.18 0 0;
+    --sidebar-foreground: 0.95 0 0;
+    --sidebar-primary: 0.72 0.22 200;
+    --sidebar-primary-foreground: 0.12 0 0;
+    --sidebar-accent: 0.65 0.25 270;
+    --sidebar-accent-foreground: 0.95 0 0;
+    --sidebar-border: 0.25 0.05 0;
+    --sidebar-ring: 0.72 0.22 200;
+
+    --gradient-primary: linear-gradient(
+      135deg,
+      oklch(0.65 0.25 270),
+      oklch(0.72 0.22 200)
+    );
+    --gradient-subtle: linear-gradient(135deg, oklch(0.22 0 0), oklch(0.18 0 0));
+  }
+
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground font-body antialiased;
+  }
+}
+
+@layer utilities {
+  .transition-smooth {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .gradient-primary {
+    background: var(--gradient-primary);
+  }
+
+  .gradient-subtle {
+    background: var(--gradient-subtle);
+  }
+
+  .glass {
+    backdrop-filter: blur(10px);
+    background: oklch(0.18 0 0 / 0.6);
+    border: 1px solid oklch(0.25 0.05 0 / 0.3);
+  }
+
+  .glass-strong {
+    backdrop-filter: blur(16px);
+    background: oklch(0.12 0 0 / 0.8);
+    border: 1px solid oklch(0.25 0.05 0 / 0.4);
+  }
+
+  .animate-gradient-flow {
+    animation: gradient-flow 8s ease-in-out infinite;
+  }
+
+  /* Glow ring on video panels */
+  .video-glow-purple {
+    box-shadow: 0 0 0 2px oklch(0.65 0.25 270 / 0.6), 0 0 24px
+      oklch(0.65 0.25 270 / 0.3);
+  }
+
+  .video-glow-cyan {
+    box-shadow: 0 0 0 2px oklch(0.72 0.22 200 / 0.6), 0 0 24px
+      oklch(0.72 0.22 200 / 0.3);
+  }
+
+  /* Pulsing online dot */
+  .pulse-dot {
+    animation: pulse-dot 2s ease-in-out infinite;
+  }
+
+  /* Gradient text */
+  .gradient-text {
+    background: linear-gradient(
+      135deg,
+      oklch(0.72 0.22 200),
+      oklch(0.65 0.25 270)
+    );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+}
+
+@font-face {
+  font-family: "General Sans";
+  src: url("/assets/fonts/GeneralSans.woff2") format("woff2");
+  font-weight: 400 700;
+}
+
+@font-face {
+  font-family: "DM Sans";
+  src: url("/assets/fonts/DMSans.woff2") format("woff2");
+  font-weight: 400 700;
+}
+
+@font-face {
+  font-family: "Geist Mono";
+  src: url("/assets/fonts/GeistMono.woff2") format("woff2");
+  font-weight: 400 700;
+}

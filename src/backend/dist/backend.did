@@ -1,0 +1,45 @@
+type UserId = principal;
+type Timestamp = int;
+type SignalingMsg = 
+ variant {
+   answer: record {sdp: text;};
+   iceCandidate:
+    record {
+      candidate: text;
+      sdpMLineIndex: opt nat;
+      sdpMid: opt text;
+    };
+   offer: record {sdp: text;};
+ };
+type SignalingEnvelope = 
+ record {
+   from: UserId;
+   msg: SignalingMsg;
+   sentAt: Timestamp;
+ };
+type SessionStatus = 
+ variant {
+   active: record {peerConnected: bool;};
+   notFound;
+ };
+type SessionId = text;
+type MatchResult = 
+ variant {
+   matched: record {
+              peerId: UserId;
+              sessionId: SessionId;
+            };
+   waiting: record {position: nat;};
+ };
+service : {
+  checkMatch: () -> (MatchResult);
+  endSession: (sessionId: SessionId) -> ();
+  enterQueue: () -> (nat);
+  getSessionStatus: (sessionId: SessionId) -> (SessionStatus);
+  leaveQueue: () -> ();
+  pollSignaling: (sessionId: SessionId) -> (vec SignalingEnvelope);
+  sendAnswer: (sessionId: SessionId, sdp: text) -> ();
+  sendIceCandidate: (sessionId: SessionId, candidate: text, sdpMid: opt text,
+   sdpMLineIndex: opt nat) -> ();
+  sendOffer: (sessionId: SessionId, sdp: text) -> ();
+}

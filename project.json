@@ -1,0 +1,23 @@
+{
+  "overview": "An Omegle-style random video chat app where users are instantly paired with a random stranger for an ephemeral live video session. Features Internet Identity login, a split-screen video interface with picture-in-picture, mic/camera controls, and a modern glassmorphism design optimized for mobile.",
+  "features": [
+    "Random instant matching — get paired with a stranger in seconds",
+    "Live split-screen video chat with picture-in-picture local preview",
+    "Mic and camera toggles with live on/off state",
+    "Next button to skip and re-match with someone new",
+    "Ephemeral sessions — nothing saved after disconnect",
+    "Glassmorphism mobile-first design with animated gradient background",
+    "Internet Identity login — no password needed"
+  ],
+  "category": "social",
+  "tags": [
+    "video-chat",
+    "random-matching",
+    "omegle",
+    "webrtc",
+    "social",
+    "mobile",
+    "ephemeral"
+  ],
+  "last_updated": "2026-04-17T22:50:36.877Z"
+}

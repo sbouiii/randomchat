@@ -1,0 +1,79 @@
+// Version: 1.0.0
+type Data__791452850<K, V> =
+  {var count : Nat__490723111; kvs : [var ?(K, V)]};
+type Int__270357528 = Int__616954475;
+type Int__616954475 = Int;
+type Internal__8484328<K, V> =
+  {children : [var ?Node__46230540<K, V>]; data : Data__791452850<K, V>};
+type Leaf__809889148<K, V> = {data : Data__791452850<K, V>};
+type List__415060402<T> = List__790383201<T>;
+type List__790383201<T> =
+  {
+    var blockIndex : Nat__490723111;
+    var blocks : [var [var ?T]];
+    var elementIndex : Nat__490723111
+  };
+type Nat__490723111 = Nat__920180692;
+type Nat__920180692 = Nat;
+type Node__46230540<K, V> =
+  {#internal : Internal__8484328<K, V>; #leaf : Leaf__809889148<K, V>};
+type Node__585180226<T> =
+  {
+    var next : ?Node__585180226<T>;
+    var previous : ?Node__585180226<T>;
+    value : T
+  };
+type QueueEntry__808682059 =
+  {joinedAt : Timestamp__668555535; userId : UserId__886919811};
+type SessionId__499227824 = Text;
+type Session__348463066 =
+  {
+    caller : UserId__886919811;
+    var callerActive : Bool;
+    createdAt : Timestamp__668555535;
+    id : SessionId__499227824;
+    peer : UserId__886919811;
+    var peerActive : Bool
+  };
+type SignalingEnvelope__418612271 =
+  {
+    from : UserId__886919811;
+    msg : SignalingMsg__491147796;
+    sentAt : Timestamp__668555535
+  };
+type SignalingMsg__491147796 =
+  {
+    #answer : {sdp : Text};
+    #iceCandidate : {candidate : Text; sdpMLineIndex : ?Nat; sdpMid : ?Text};
+    #offer : {sdp : Text}
+  };
+type Time__796480547 = Int__270357528;
+type Time__900049286 = Time__796480547;
+type Timestamp__668555535 = Time__900049286;
+type UserId__886919811 = Principal;
+actor {
+  stable inQueue :
+    {
+      var root : Node__46230540<UserId__886919811, Bool>;
+      var size : Nat__490723111
+    };
+  stable matchQueue :
+    {
+      var back : ?Node__585180226<QueueEntry__808682059>;
+      var front : ?Node__585180226<QueueEntry__808682059>;
+      var size : Nat__490723111
+    };
+  stable nextSessionId : [var Nat];
+  stable sessions :
+    {
+      var root : Node__46230540<SessionId__499227824, Session__348463066>;
+      var size : Nat__490723111
+    };
+  stable signalingStore :
+    {
+      var root :
+        Node__46230540<SessionId__499227824,
+                        List__415060402<SignalingEnvelope__418612271>>;
+      var size : Nat__490723111
+    }
+};
